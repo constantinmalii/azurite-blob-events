@@ -10,7 +10,9 @@ namespace RabbitEventHubTest.FunctionApp
     public static class BlobTrigger
     {
         [FunctionName("BlobTrigger")]
-        public static async Task RunAsync([BlobTrigger("azurite/azurite-test", Connection = "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;")]
+        public static async Task RunAsync([BlobTrigger("azurite-test/{name}", Connection = "AzureWebJobsStorage")]
+
+            
             Stream myBlob, string name, ILogger log)
         {
             log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
